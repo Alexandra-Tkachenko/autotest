@@ -1,12 +1,7 @@
 ## Автоматизированное тестирование
 
-#### Stage 1
-
-На данном этапе нужно продумать архитектуру и создать несколько тест-кейсов.
-
-- Selenium vs Selenide - веб-элементы или проксирование
-- Архитектура - pattern (loadable component, etc) & момент с местом хранения данных
-- Масштабирование - паттерны и JUnit5
-- Каждый тест подразумевает подготовку и зачистку 
+- Framework: Selenium
+- Patterns: Page Object, Chain of invocations, Loadable Component, Page Element, Value Object, Matcher, Data Provider
+- Libs: JUnit5, AssertJ (+ Jackson, Lombok)
 
 В файле sourse.json хранятся данные для входа

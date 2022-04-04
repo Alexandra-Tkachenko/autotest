@@ -2,21 +2,25 @@ package pages;
 
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public abstract class BasePage {
+public abstract class BasePage<T extends BasePage<T>> extends LoadableComponent<T> {
 
     protected WebDriver driver;
-    public static final long WAIT_TIME = 2;
+    public static final long WAIT_TIME = 1;
+    public static final String BASE_URL = "https://ok.ru/";
+
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        check(driver);
     }
 
     public void clear(By by) {
@@ -28,17 +32,34 @@ public abstract class BasePage {
     }
 
     public void click(By by) {
-        WebElement element = driver.findElement(by);
-        if (element.isDisplayed()) {
-            element.click();
+        if (isElementDisplayed(by)) {
+            driver.findElement(by).click();
+        } else {
+            Assertions.fail("Элемент не был найден для клика");
         }
     }
 
-    public void assertion(By by, long time, String error) {
-        Assertions.assertTrue(new WebDriverWait(driver, Duration.ofMinutes(time)).
-                until((ExpectedCondition<Boolean>) d -> driver.findElement(by).isDisplayed()), error);
+    public boolean isElementDisplayed(By by) {
+        try {
+            driver.findElement(by).isDisplayed();
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
-    abstract protected void check(WebDriver driver);
+    public void assertionDisplayed(By by, String error) {
+        Assertions.assertTrue(new WebDriverWait(driver, Duration.ofMinutes(WAIT_TIME)).
+                until((ExpectedCondition<Boolean>) d -> isElementDisplayed(by)), error);
+    }
+
+    public void waitClickable(By by) {
+        WebElement wait = new WebDriverWait(driver, Duration.ofMinutes(WAIT_TIME)).
+                until(ExpectedConditions.elementToBeClickable(by));
+    }
+
+    @Override
+    protected void load() {
+    }
 }
 

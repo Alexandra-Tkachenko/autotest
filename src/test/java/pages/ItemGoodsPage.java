@@ -2,13 +2,8 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
-public class ItemGoodsPage extends BasePage {
+public class ItemGoodsPage extends BasePage<ItemGoodsPage> {
     private final By ADD_BOOKMARK = By.xpath("//*[contains(@title, 'Добавить')]");
     private final By CLOSE = By.xpath("//*[contains(@class, 'modal-new_close')]/a");
 
@@ -16,19 +11,24 @@ public class ItemGoodsPage extends BasePage {
         super(driver);
     }
 
-    //TODO: hmm
-    @Override
-    protected void check(WebDriver driver) {
-    }
-
     public ItemGoodsPage addBookmark() {
-        WebElement wait = new WebDriverWait(driver, Duration.ofMinutes(WAIT_TIME)).
-                until(ExpectedConditions.elementToBeClickable(ADD_BOOKMARK));
         click(ADD_BOOKMARK);
-        return this;
+        return this.get();
     }
 
     public void close() {
         click(CLOSE);
+    }
+
+    @Override
+    protected void isLoaded() throws Error {
+        check();
+    }
+
+    private void check() {
+        waitClickable(ADD_BOOKMARK);
+        waitClickable(CLOSE);
+        assertionDisplayed(ADD_BOOKMARK, "Не добавить в закладки");
+        assertionDisplayed(CLOSE, "Не закрыть");
     }
 }
