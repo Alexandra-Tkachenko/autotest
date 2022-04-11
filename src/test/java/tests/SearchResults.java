@@ -50,7 +50,7 @@ public class SearchResults extends BaseTest {
 
             assertThat(goodsPage.setMinPrice(min).setMaxPrice(max)
                     .checkPrice(Integer.parseInt(min), Integer.parseInt(max)))
-                    .as("цена не в диапазоне").isTrue();
+                    .as("Цена не в диапазоне").isTrue();
         }
 
     }
@@ -65,11 +65,11 @@ public class SearchResults extends BaseTest {
         @DisplayName("correct search according to sorting")
         @ParameterizedTest
         @ValueSource(strings = {"кофе"})
-        public void searchInPriceRange(String search) throws IOException {
+        public void searchByCriterion(String search) throws IOException {
             GoodsPage goodsPage = new LoginPage(BaseTest.driver).get().login().openGoodsPage().writeSearchQuery(search);
 
             assertThat(goodsPage.chooseSort(Criteria.CHEAP).isCheapSort())
-                    .as("сортировка не %s", Criteria.CHEAP.toString()).isTrue();
+                    .as("Cортировка не %s", Criteria.CHEAP.toString()).isTrue();
         }
 
 
