@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class MainPage extends BasePage<MainPage> {
     private static final By GOODS = By.xpath("//*[contains(@href, 'mall/sections')]");
-    private final static String URL = BasePage.BASE_URL;
+    private final static String URL = BASE_URL;
 
     public MainPage(WebDriver driver) {
         super(driver);

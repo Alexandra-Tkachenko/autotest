@@ -14,7 +14,7 @@ public class LoginPage extends BasePage<LoginPage> {
     private static final By PASSWORD = By.id("field_password");
     private static final By SUBMIT = By.xpath("//*[contains(@value, 'Войти')]");
 
-    private final static String URL = BasePage.BASE_URL;
+    private final static String URL = BASE_URL;
 
     private static User user;
 

@@ -26,7 +26,9 @@ public class ItemGoodsPage extends BasePage<ItemGoodsPage> {
     }
 
     private void check() {
+        waitVisibility(ADD_BOOKMARK);
         waitClickable(ADD_BOOKMARK);
+        waitVisibility(CLOSE);
         waitClickable(CLOSE);
         assertionDisplayed(ADD_BOOKMARK, "Не добавить в закладки");
         assertionDisplayed(CLOSE, "Не закрыть");

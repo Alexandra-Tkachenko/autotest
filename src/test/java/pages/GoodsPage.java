@@ -63,6 +63,7 @@ public class GoodsPage extends BasePage<GoodsPage> {
     }
 
     public GoodsPage openBasket() {
+        waitVisibility(BASKET);
         waitClickable(BASKET);
         assertionDisplayed(BASKET, "Корзина недоступна");
         click(BASKET);
@@ -114,7 +115,7 @@ public class GoodsPage extends BasePage<GoodsPage> {
     }
 
     public boolean isExpensiveSort() {
-        check();
+        waitVisibility(GOODS_ELEMENTS);
         List<GoodElement> goods = this.getGoods();
         return IntStream.range(0, goods.size() - 1)
                 .noneMatch(i -> Integer.parseInt(goods.get(i).getPrice().trim())

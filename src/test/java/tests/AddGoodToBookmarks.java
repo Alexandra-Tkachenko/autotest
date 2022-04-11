@@ -18,11 +18,11 @@ public class AddGoodToBookmarks extends BaseTest {
     @Tag("bookmark")
     @Timeout(value = 1, unit = TimeUnit.MINUTES)
     @DisplayName("correct addition and display to bookmarks")
-    @RepeatedTest(value = 1, name = "{displayName} {currentRepetition}/{totalRepetitions}")
+    @RepeatedTest(value = 1, name = "{currentRepetition}/{totalRepetitions}")
 
     public void additionalBookmarks() throws IOException, InterruptedException {
 
-        GoodsPage goodsPage = new LoginPage(BaseTest.driver).get().login().openGoodsPage();
+        GoodsPage goodsPage = new LoginPage(driver).get().login().openGoodsPage();
 
         GoodElement goodsElement = goodsPage.getGoodElementFromList(0);
 
@@ -31,7 +31,7 @@ public class AddGoodToBookmarks extends BaseTest {
         System.out.println(priceGoods + " - " + nameGoods);
 
         goodsElement.openGoodsLink().addBookmark().close();
-        new Actions(BaseTest.driver).sendKeys(Keys.PAGE_UP).sendKeys(Keys.PAGE_UP).build().perform();
+        new Actions(driver).sendKeys(Keys.PAGE_UP).sendKeys(Keys.PAGE_UP).build().perform();
         goodsPage.get().openBasket().openBookmarks();
 
         ItemElement itemElement = goodsPage.getGoodElementFromBasket(0);

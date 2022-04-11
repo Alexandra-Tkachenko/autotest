@@ -58,6 +58,11 @@ public abstract class BasePage<T extends BasePage<T>> extends LoadableComponent<
                 until(ExpectedConditions.elementToBeClickable(by));
     }
 
+    public void waitVisibility(By by) {
+        WebElement wait = new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIME)).
+                until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
     @Override
     protected void load() {
     }

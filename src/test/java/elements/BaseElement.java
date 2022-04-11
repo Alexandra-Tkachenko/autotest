@@ -35,6 +35,11 @@ public abstract class BaseElement<T extends BaseElement<T>> extends LoadableComp
                 until(ExpectedConditions.elementToBeClickable(by));
     }
 
+    public void waitVisibility(By by) {
+        WebElement wait = new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIME)).
+                until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
     public String getPrice() {
         return driver.findElement(PRICE).getText();
     }
