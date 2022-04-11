@@ -50,7 +50,7 @@ public class SearchResults extends BaseTest {
 
             assertThat(goodsPage.setMinPrice(min).setMaxPrice(max)
                     .checkPrice(Integer.parseInt(min), Integer.parseInt(max)))
-                    .as("цена не в диапазоне").isTrue();
+                    .as("Цена не в диапазоне").isTrue();
         }
 
     }
