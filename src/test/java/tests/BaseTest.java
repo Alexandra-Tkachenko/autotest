@@ -16,7 +16,7 @@ public class BaseTest {
     @BeforeAll
     @Timeout(6)
     static void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\kubi1\\Downloads\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\resources\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();

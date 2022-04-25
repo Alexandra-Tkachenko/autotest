@@ -1,7 +1,7 @@
 package pages;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Getter;
+import elements.User;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -35,7 +35,7 @@ public class LoginPage extends BasePage<LoginPage> {
     }
 
     private static User parseUserData() throws IOException {
-        return (new ObjectMapper()).readValue(new File("src/test/java/resources/source.json"), User.class);
+        return (new ObjectMapper()).readValue(new File("resources" + File.separator + "source.json"), User.class);
     }
 
     @Override
@@ -46,18 +46,8 @@ public class LoginPage extends BasePage<LoginPage> {
     @Override
     protected void isLoaded() throws Error {
         Assertions.assertEquals(URL, driver.getCurrentUrl(), "Проблема с загрузкой страницы");
-        check();
-    }
-
-    private void check() {
         assertionDisplayed(LOGIN, "Поля логина не загрузилось");
         assertionDisplayed(PASSWORD, "Поля пароля не загрузилось");
         assertionDisplayed(SUBMIT, "Кнопка 'войти' не загрузилaсь");
-    }
-
-    @Getter
-    static class User {
-        private String login;
-        private String password;
     }
 }

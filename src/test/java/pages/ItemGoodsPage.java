@@ -22,10 +22,6 @@ public class ItemGoodsPage extends BasePage<ItemGoodsPage> {
 
     @Override
     protected void isLoaded() throws Error {
-        check();
-    }
-
-    private void check() {
         waitVisibility(ADD_BOOKMARK);
         waitClickable(ADD_BOOKMARK);
         waitVisibility(CLOSE);
@@ -33,4 +29,5 @@ public class ItemGoodsPage extends BasePage<ItemGoodsPage> {
         assertionDisplayed(ADD_BOOKMARK, "Не добавить в закладки");
         assertionDisplayed(CLOSE, "Не закрыть");
     }
+
 }

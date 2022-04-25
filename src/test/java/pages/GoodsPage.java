@@ -31,10 +31,6 @@ public class GoodsPage extends BasePage<GoodsPage> {
 
     @Override
     protected void isLoaded() throws Error {
-        check();
-    }
-
-    private void check() {
         waitClickable(GOODS_ELEMENTS);
     }
 
@@ -86,7 +82,8 @@ public class GoodsPage extends BasePage<GoodsPage> {
         clear(SEARCH_INPUT);
         IntStream.range(0, query.length())
                 .forEach(i -> sendKeys(SEARCH_INPUT,
-                        new StringBuilder().append(query.charAt(i)).toString()));
+                        new StringBuilder()
+                                .append(query.charAt(i)).toString()));
         return this.get();
     }
 

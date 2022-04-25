@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.ItemGoodsPage;
 
-public class GoodElement extends BaseElement<GoodElement> {
+public class GoodElement extends BuyElement<GoodElement> {
     protected By LINK = By.xpath("//*[@class='mall-item_section']/a");
 
     public GoodElement(WebDriver driver, WebElement item) {

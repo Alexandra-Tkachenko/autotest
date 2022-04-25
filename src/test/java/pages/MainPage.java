@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 
 public class MainPage extends BasePage<MainPage> {
     private static final By GOODS = By.xpath("//*[contains(@href, 'mall/sections')]");
-    private final static String URL = BASE_URL;
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -18,15 +17,12 @@ public class MainPage extends BasePage<MainPage> {
 
     @Override
     protected void load() {
-        driver.get(URL);
+        driver.get(BASE_URL);
     }
 
     @Override
     protected void isLoaded() throws Error {
-        check();
-    }
-
-    private void check() {
         assertionDisplayed(GOODS, "Ссылка на товары не загрузилась");
     }
+
 }
